@@ -10,12 +10,20 @@ import pandas as pd
 # from ThreePlayerIntrospectiveModel import ClassifierModule, IntrospectionGeneratorModule, ThreePlayerIntrospectiveModel
 
 class ThreePlayerIntrospectiveExplainer:
-    def __init__(self, args, word_vocab, explainer=ClassifierModule, anti_explainer=ClassifierModule, generator=IntrospectionGeneratorModule, classifier=ClassifierModule):
+    def __init__(self, args, word_vocab, explainer=None, anti_explainer=None, generator=None, gen_classifier=None):
         '''
         explainer, anti_explainer, generator, and classifier: classes 
         that will be initialized based on parameters listed in args
         '''
-        self.model = ThreePlayerIntrospectiveModel(args, word_vocab, explainer, anti_explainer, generator, classifier)
+        if not explainer:
+            explainer = ClassifierModule(args, word_vocab)
+        if not anti_explainer:
+            anti_explainer = ClassifierModule(args, word_vocab)
+        if not generator:
+            gen_classifier = ClassifierModule(args, word_vocab)
+            generator = IntrospectionGeneratorModule(args, gen_classifier)
+        
+        self.model = ThreePlayerIntrospectiveModel(args, word_vocab, explainer, anti_explainer, generator, gen_classifier)
         self.labels = args.labels
 
     def train(self, *args, **kwargs):
