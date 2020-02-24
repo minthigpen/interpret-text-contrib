@@ -6,4 +6,5 @@ This folder contains examples and best practices, written in Jupyter notebooks, 
 |---| ------------------------ | ------------------- |---|
 |[Text Classification](text_classification/text_classification_mnli_bert.ipynb)|Topic Classification|BERT|en|
 |[Text Classification](text_classification/text_classification_mnli_bow_lr.ipynb)|Topic Classification|Logistic reg. + Bag of Words|en|
+|[Text Classification](text_classification/text_classfication_sst2_three_player.ipynb)|Sentiment Analysis|BERT and RNN|en|
 
